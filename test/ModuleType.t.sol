@@ -10,13 +10,12 @@ contract ModuleTypeTest is Test {
     ModuleType[] typesArray;
 
     function setUp() public {
-        module = new Module();
-
         typesArray = new ModuleType[](4);
         typesArray[0] = ModuleType.wrap(1);
         typesArray[1] = ModuleType.wrap(2);
         typesArray[2] = ModuleType.wrap(3);
         typesArray[3] = ModuleType.wrap(4);
+        module = new Module(typesArray);
     }
 
     function test_encoding() public {

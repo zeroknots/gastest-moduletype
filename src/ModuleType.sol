@@ -6,9 +6,13 @@ type ModuleTypesEnc is uint256;
 type ModuleType is uint256;
 
 contract Module {
-    ModuleTypesEnc public constant MODULE_TYPES = ModuleTypesEnc.wrap(30);
+    ModuleTypesEnc public immutable MODULE_TYPES;
 
-    function isModuleType(ModuleType _isModuleType) public pure returns (bool) {
+    constructor(ModuleType[] memory moduleTypes) {
+        MODULE_TYPES = ModuleTypeLib.bitEncode(moduleTypes);
+    }
+
+    function isModuleType(ModuleType _isModuleType) public view returns (bool) {
         return ModuleTypeLib.isType(MODULE_TYPES, _isModuleType);
     }
 
@@ -20,7 +24,7 @@ contract Module {
         moduleTypes[3] = 4;
     }
 
-    function getModuleTypes() public pure returns (ModuleTypesEnc) {
+    function getModuleTypes() public view returns (ModuleTypesEnc) {
         return MODULE_TYPES;
     }
 }
