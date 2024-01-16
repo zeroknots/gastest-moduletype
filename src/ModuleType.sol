@@ -13,7 +13,7 @@ contract Module {
     }
 
     function getModuleTypesArray() public pure returns (uint256[] memory moduleTypes) {
-        moduleTypes = new uint256[](4);
+        moduleTypes = new uint256[](5);
         moduleTypes[0] = 1;
         moduleTypes[1] = 2;
         moduleTypes[2] = 3;
@@ -31,17 +31,17 @@ library ModuleTypeLib {
     }
 
     function bitEncode(ModuleType[] memory moduleTypes) internal pure returns (ModuleTypesEnc) {
-        uint16 result;
+        uint256 result;
         for (uint256 i; i < moduleTypes.length; i++) {
-            result = result + uint16(2 ** ModuleType.unwrap(moduleTypes[i]));
+            result = result + uint256(2 ** ModuleType.unwrap(moduleTypes[i]));
         }
         return ModuleTypesEnc.wrap(result);
     }
 
     function bitEncodeCalldata(ModuleType[] calldata moduleTypes) internal pure returns (ModuleTypesEnc) {
-        uint16 result;
+        uint256 result;
         for (uint256 i; i < moduleTypes.length; i++) {
-            result = result + uint16(2 ** ModuleType.unwrap(moduleTypes[i]));
+            result = result + uint256(2 ** ModuleType.unwrap(moduleTypes[i]));
         }
         return ModuleTypesEnc.wrap(result);
     }

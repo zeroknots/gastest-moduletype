@@ -31,7 +31,7 @@ contract ModuleTypeTest is Test {
         uint256 length = types.length;
         bool isType = false;
         for (uint256 i; i < length; i++) {
-            if (types[i] == 3) {
+            if (types[i] == 6) {
                 isType = true;
                 break;
             }
